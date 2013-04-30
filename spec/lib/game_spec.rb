@@ -41,11 +41,11 @@ describe Game do
     game.place_card card, row, column
     expect(game.current_player).to eq player_2
   end
-  it "is complete when no more cards can be placed" do
+  it "is not complete when more cards can be placed" do
     game = Game.new players: players, board: empty_board
     expect(game.complete?).to be_false
   end
-  it "is not complete when more cards can be placed" do
+  it "is complete when no more cards can be placed" do
     game = Game.new players: players, board: full_board
     expect(game.complete?).to be_true
   end
