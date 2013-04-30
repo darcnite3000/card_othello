@@ -1,8 +1,4 @@
-require 'board_cell'
 require 'game'
-require 'matrix'
-
-
 
 describe Game do
   let(:player_1){ double('player') }
@@ -11,8 +7,8 @@ describe Game do
   let(:card){ double('card') }
   let(:empty_cell){ double('cell', :empty? => true, :card => nil) }
   let(:full_cell){ double('cell', :empty? => false, :card => card) }
-  let(:full_board){ Matrix.build(1){ full_cell } }
-  let(:empty_board){ Matrix.build(1){ empty_cell } }
+  let(:full_board){ [full_cell] }
+  let(:empty_board){ [empty_cell] }
   context '.new' do
     it "has a game board" do
       board = double('board')
