@@ -1,5 +1,4 @@
 require 'board_cell'
-require 'Matrix'
 
 class Game
   attr_reader :board, :players, :rules
@@ -12,12 +11,18 @@ class Game
   def current_player
     @player_enumerator.peek
   end
-  def place_card
+  def place_card cell, card
     @player_enumerator.next
   end
 end
 
 describe Game do
+  let(:player_1){ double('player') }
+  let(:player_2){ double('player') }
+  let(:players){ [player_1, player_2] }
+  let(:card){ double('card') }
+  let(:empty_cell){ double('cell', :empty? => true) }
+  let(:full_cell){ double('cell', :empty? => false, :card => card) }
   context '.new' do
     it "has a game board" do
       board = double('board')
@@ -25,7 +30,6 @@ describe Game do
       expect(game.board).to eq board
     end
     it "has two players" do
-      players = [double('player'), double('player')]
       game = Game.new players: players
       expect(game.players).to eq players
       expect(game.players.length).to eq 2
@@ -36,19 +40,13 @@ describe Game do
       expect(game.rules).to eq rules
     end
     it "sets the current player" do
-      player_1 = double('player')
-      player_2 = double('player')
-      players = [player_1,player_2]
       game = Game.new players: players
       expect(game.current_player).to eq player_1
     end
   end
   it "allows the players to alternately place a card" do
-    player_1 = double('player')
-    player_2 = double('player')
-    players = [player_1,player_2]
     game = Game.new players: players
-    game.place_card
+    game.place_card empty_cell, card
     expect(game.current_player).to eq player_2
   end
   xit "is over when no more cards can be placed"
