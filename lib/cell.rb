@@ -1,4 +1,4 @@
-class BoardCell
+class Cell
   class InvalidPlacement < StandardError; end
   attr_reader :type, :card
   def initialize(type: nil, card: nil)
