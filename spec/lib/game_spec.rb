@@ -36,7 +36,9 @@ describe Game do
   end
   it "allows the players to alternately place a card" do
     game = Game.new players: players
-    game.place_card empty_cell, card
+    row = 0
+    column = 0
+    game.place_card card, row, column
     expect(game.current_player).to eq player_2
   end
   it "is complete when no more cards can be placed" do

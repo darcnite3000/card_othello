@@ -9,7 +9,7 @@ class Game
   def current_player
     @player_enumerator.peek
   end
-  def place_card cell, card
+  def place_card card, row, column
     @player_enumerator.next
   end
   def complete?
