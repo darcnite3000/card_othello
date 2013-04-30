@@ -45,5 +45,16 @@ describe Game do
     game = Game.new players: players, board: full_board
     expect(game.complete?).to be_true
   end
-  xit "can tell who the winner is or if it's a draw"
+  it "can tell who the winner is" do
+    player_a = 1
+    player_b = 9
+    game = Game.new players: [player_a,player_b]
+    expect(game.winner).to eq player_b
+  end
+  it "can tell if it's a draw" do
+    player_a = 5
+    player_b = 5
+    game = Game.new players: [player_a,player_b]
+    expect(game.winner).to be_false
+  end
 end

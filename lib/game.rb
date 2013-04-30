@@ -15,4 +15,11 @@ class Game
   def complete?
     @board.each.none? {|cell| cell.empty? }
   end
+  def winner
+    if @players[0] > @players[1]
+      @players[0]
+    elsif @players[1] > @players[0]
+      @players[1]
+    end
+  end
 end
